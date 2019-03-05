@@ -15,13 +15,6 @@ apt-get update
 apt-get install wget zlib1g-dev libbz2-dev liblzma-dev libpcre3-dev libcurl4-gnutls-dev gfortran g++ gcc make libcurl3-gnutls mcl bzip2 libxml2-dev libssl-dev libmariadbclient-dev libpq-dev ssh -y
 
 mkdir -p /usr/share/man/man1
-#Install openmpi
-#wget https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-4.0.0.tar.gz
-#gunzip -c openmpi-4.0.0.tar.gz | tar xf -
-#cd openmpi-4.0.0
-#./configure --prefix=/usr/local
-#make all install 
-#echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/' >>$SINGULARITY_ENVIRONMENT
 
 #Install java
 echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
@@ -69,10 +62,14 @@ conda install -c bioconda -y fasttree
 mv /usr/local/miniconda/bin/fasttree /usr/local/miniconda/bin/FastTree #name required by orthofinder
 conda install -c bioconda -y treebest
 conda install -c conda-forge openmpi
+ln -s /usr/local/miniconda/lib/libmpi_cxx.so.40.10.0 /usr/local/miniconda/lib/libmpi_cxx.so.1 
+ln -s /usr/local/miniconda/lib/libmpi.so.40.10.3 /usr/local/miniconda/lib/libmpi.so.1
+ln -s /usr/local/lib/libpng15.so.15.13.0  /usr/local/miniconda/lib/libpng15.so.15
 
+echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/miniconda/lib' >>$SINGULARITY_ENVIRONMENT
 echo 'export PATH=$PATH:/usr/local/miniconda/bin' >>$SINGULARITY_ENVIRONMENT
 
 %files 
 i-adhore /usr/local/bin
-
+libpng15.so.15.13.0 /usr/local/lib
 
