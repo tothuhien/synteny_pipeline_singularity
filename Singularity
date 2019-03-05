@@ -5,7 +5,9 @@ FROM: debian:9.3-slim
 
 %help
 
-Contains R version 3.5.0
+This image contains required softwares to run the pipeline https://gitlab.com/sandve-lab/salmonid_synteny
+First pull the image from shub: singularity pull shub://tothuhien/synteny_pipeline_singularity
+Then cd to the folder of the pipeline and use the dowload image to run the snakefile of the pipeline: singularity exec synteny_pipeline_singularity.simg snakemake -s Snakefile.py
 
 %post
 apt-get update
@@ -72,4 +74,7 @@ echo 'export PATH=$PATH:/usr/local/miniconda/bin' >>$SINGULARITY_ENVIRONMENT
 %files 
 i-adhore /usr/local/bin
 libpng15.so.15.13.0 /usr/local/lib
+
+%runscript
+exec "$@"`
 
