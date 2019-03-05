@@ -12,10 +12,16 @@ apt-get update
 apt-get install software-properties-common -y
 add-apt-repository "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main"
 apt-get update
-apt-get install wget zlib1g-dev libbz2-dev liblzma-dev libpcre3-dev libcurl4-gnutls-dev gfortran g++ gcc make libcurl3-gnutls mcl bzip2 libxml2-dev libssl-dev libmariadbclient-dev libpq-dev -y
+apt-get install wget zlib1g-dev libbz2-dev liblzma-dev libpcre3-dev libcurl4-gnutls-dev gfortran g++ gcc make libcurl3-gnutls mcl bzip2 libxml2-dev libssl-dev libmariadbclient-dev libpq-dev ssh -y
 
 mkdir -p /usr/share/man/man1
-apt-get install ssh openmpi-bin -y
+#Install openmpi
+wget https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-4.0.0.tar.gz
+gunzip -c openmpi-4.0.0.tar.gz | tar xf -
+cd openmpi-4.0.0
+./configure --prefix=/usr/local
+make all install 
+echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/' >>$SINGULARITY_ENVIRONMENT
 
 #Install java
 echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
@@ -36,7 +42,7 @@ R --slave -e 'install.packages("BiocManager",repos="https://cloud.r-project.org/
 R --slave -e 'BiocManager::install(c("dplyr","tidyverse","magrittr","treeio","Biostrings","ape","yaml","seqinr"),dependencies=TRUE)'
 
 sed -i 's/^R_LIBS_USER/#R_LIBS_USER/g' /usr/local/lib/R/etc/Renviron
-echo 'R_LIBS_USER=/usr/local/lib/R/library' >> /usr/local/lib/R/etc/Renviron
+echo "R_LIBS_USER='/usr/local/lib/R/library'" >> /usr/local/lib/R/etc/Renviron
 
 #Install softwares of pipeline
 
