@@ -35,6 +35,9 @@ cd ../
 R --slave -e 'install.packages("BiocManager",repos="https://cloud.r-project.org/")'
 R --slave -e 'BiocManager::install(c("dplyr","tidyverse","magrittr","treeio","Biostrings","ape","yaml","seqinr"),dependencies=TRUE)'
 
+sed -i 's/^R_LIBS_USER/#R_LIBS_USER/g' /usr/local/lib/R/etc/Renviron
+echo 'R_LIBS_USER=/usr/local/lib/R/library' >> /usr/local/lib/R/etc/Renviron
+
 #Install softwares of pipeline
 
 wget https://github.com/davidemms/OrthoFinder/releases/download/v2.3.1-beta/OrthoFinder-2.3.1.tar.gz 
