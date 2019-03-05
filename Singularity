@@ -16,12 +16,12 @@ apt-get install wget zlib1g-dev libbz2-dev liblzma-dev libpcre3-dev libcurl4-gnu
 
 mkdir -p /usr/share/man/man1
 #Install openmpi
-wget https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-4.0.0.tar.gz
-gunzip -c openmpi-4.0.0.tar.gz | tar xf -
-cd openmpi-4.0.0
-./configure --prefix=/usr/local
-make all install 
-echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/' >>$SINGULARITY_ENVIRONMENT
+#wget https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-4.0.0.tar.gz
+#gunzip -c openmpi-4.0.0.tar.gz | tar xf -
+#cd openmpi-4.0.0
+#./configure --prefix=/usr/local
+#make all install 
+#echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/' >>$SINGULARITY_ENVIRONMENT
 
 #Install java
 echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
@@ -68,6 +68,7 @@ conda install -c bioconda -y fastme
 conda install -c bioconda -y fasttree
 mv /usr/local/miniconda/bin/fasttree /usr/local/miniconda/bin/FastTree #name required by orthofinder
 conda install -c bioconda -y treebest
+conda install -c conda-forge openmpi
 
 echo 'export PATH=$PATH:/usr/local/miniconda/bin' >>$SINGULARITY_ENVIRONMENT
 
