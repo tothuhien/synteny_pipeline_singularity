@@ -45,9 +45,6 @@ wget https://github.com/davidemms/OrthoFinder/releases/download/v2.3.1-beta/Orth
 tar -xzvf OrthoFinder-2.3.1.tar.gz
 cp -r OrthoFinder-2.3.1/* /usr/local/bin
 
-wget https://github.com/bbuchfink/diamond/releases/download/v0.9.22/diamond-linux64.tar.gz
-tar xzf diamond-linux64.tar.gz
-mv diamond /usr/local/bin
   
 wget https://bioweb.supagro.inra.fr/macse/releases/macse_v2.03.jar
 mv macse_v2.03.jar /usr/local/bin
@@ -63,6 +60,7 @@ conda install -c bioconda -y fastme
 conda install -c bioconda -y fasttree
 mv /usr/local/miniconda/bin/fasttree /usr/local/miniconda/bin/FastTree #name required by orthofinder
 conda install -c bioconda -y treebest
+conda install -c bioconda diamond
 conda install -c conda-forge openmpi
 ln -s /usr/local/miniconda/lib/libmpi_cxx.so.40.10.0 /usr/local/miniconda/lib/libmpi_cxx.so.1 
 ln -s /usr/local/miniconda/lib/libmpi.so.40.10.3 /usr/local/miniconda/lib/libmpi.so.1
