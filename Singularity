@@ -62,8 +62,8 @@ conda install -c bioconda -y fasttree
 mv /usr/local/miniconda/bin/fasttree /usr/local/miniconda/bin/FastTree #name required by orthofinder
 conda install -c bioconda -y treebest
 conda install -c conda-forge openmpi
-ln -s /usr/local/miniconda/lib/libmpi_cxx.so.40.10.0 /usr/local/miniconda/lib/libmpi_cxx.so.1 
-ln -s /usr/local/miniconda/lib/libmpi.so.40.10.3 /usr/local/miniconda/lib/libmpi.so.1
+#ln -s /usr/local/miniconda/lib/libmpi_cxx.so.40.10.0 /usr/local/miniconda/lib/libmpi_cxx.so.1 
+#ln -s /usr/local/miniconda/lib/libmpi.so.40.10.3 /usr/local/miniconda/lib/libmpi.so.1
 ln -s /usr/local/lib/libpng15.so.15.13.0  /usr/local/miniconda/lib/libpng15.so.15
 
 echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/miniconda/lib' >>$SINGULARITY_ENVIRONMENT
