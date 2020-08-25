@@ -1,0 +1,42 @@
+Bootstrap: docker
+FROM: debian:9.3-slim
+# Debian Stretch without manpages and other files
+# usually not needed in containers.
+
+%help
+
+This image contains required softwares to run the pipeline https://gitlab.com/sandve-lab/salmonid_synteny
+First pull the image from shub: singularity pull shub://tothuhien/synteny_pipeline_singularity
+Then cd to the folder of the pipeline and use the dowload image to run the snakefile of the pipeline: singularity exec synteny_pipeline_singularity.simg snakemake -s Snakefile.py --configfile config.yaml --cores 10
+
+%post
+apt-get update
+apt-get install software-properties-common -y
+
+
+add-apt-repository "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main"
+apt-get install wget zlib1g-dev libbz2-dev liblzma-dev libpcre3-dev libcurl4-gnutls-dev gfortran g++ gcc make libcurl3-gnutls mcl bzip2 libxml2-dev libssl-dev libmariadbclient-dev libpq-dev ssh apt-utils gnupg locales slurm-client -y
+
+echo "LC_ALL=en_US.UTF-8" >> /etc/environment
+echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
+locale-gen en_US.UTF-8
+
+
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+chmod +x Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh -b -p /usr/local/miniconda
+export PATH=$PATH:/usr/local/miniconda/bin
+conda install -c anaconda openmpi
+mv /usr/local/lib/libmpi_cxx* /usr/local/miniconda/lib
+
+%files 
+i-adhore /usr/local/bin
+libpng15.so.15.13.0 /usr/local/lib
+libmpi_cxx.so /usr/loca/lib
+libmpi_cxx.so.1 /usr/local/lib
+libmpi_cxx.so.40 /usr/local/lib
+libmpi_cxx.so.40.10.0 /usr/local/lib
+
+%runscript
+exec "$@"`
