@@ -32,6 +32,7 @@ mv /usr/local/lib/libmpi_cxx.so /usr/local/miniconda/lib
 mv /usr/local/lib/libmpi_cxx.so.1 /usr/local/miniconda/lib
 mv /usr/local/lib/libmpi_cxx.so.40 /usr/local/miniconda/lib
 mv /usr/local/lib/libmpi_cxx.so.40.10.0 /usr/local/miniconda/lib
+mv /usr/local/miniconda/lib/libmpi.so.40 /usr/local/miniconda/lib/libmpi.so.1
 
 %files 
 i-adhore /usr/local/bin
