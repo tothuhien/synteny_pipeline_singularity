@@ -30,7 +30,7 @@ export PATH=$PATH:/usr/local/miniconda/bin
 conda install -c anaconda openmpi
 mv /usr/local/lib/libmpi_cxx.so /usr/local/miniconda/lib
 mv /usr/local/lib/libmpi_cxx.so.1 /usr/local/miniconda/lib
-#mv /usr/local/miniconda/lib/libmpi.so.40 /usr/local/miniconda/lib/libmpi.so.1
+mv /usr/local/miniconda/lib/libmpi.so.40 /usr/local/miniconda/lib/libmpi.so.1
 
 echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/miniconda/lib' >>$SINGULARITY_ENVIRONMENT
 echo 'export PATH=$PATH:/usr/local/miniconda/bin' >>$SINGULARITY_ENVIRONMENT
