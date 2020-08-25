@@ -28,12 +28,15 @@ chmod +x Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh -b -p /usr/local/miniconda
 export PATH=$PATH:/usr/local/miniconda/bin
 conda install -c anaconda openmpi
-mv /usr/local/lib/libmpi_cxx* /usr/local/miniconda/lib
+mv /usr/local/lib/libmpi_cxx.so /usr/local/miniconda/lib
+mv /usr/local/lib/libmpi_cxx.so.1 /usr/local/miniconda/lib
+mv /usr/local/lib/libmpi_cxx.so.40 /usr/local/miniconda/lib
+mv /usr/local/lib/libmpi_cxx.so.40.10.0 /usr/local/miniconda/lib
 
 %files 
 i-adhore /usr/local/bin
 libpng15.so.15.13.0 /usr/local/lib
-libmpi_cxx.so /usr/loca/lib
+libmpi_cxx.so /usr/local/lib
 libmpi_cxx.so.1 /usr/local/lib
 libmpi_cxx.so.40 /usr/local/lib
 libmpi_cxx.so.40.10.0 /usr/local/lib
