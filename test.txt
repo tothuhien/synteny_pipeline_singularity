@@ -40,7 +40,8 @@ chmod +x Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh -b -p /usr/local/miniconda
 export PATH=$PATH:/usr/local/miniconda/bin
 
-conda install -c bioconda -c conda-forge snakemake
+conda install -c conda-forge mamba
+mamba install -c bioconda snakemake
 conda install -c biocore -y mafft 
 conda install -c bioconda -y fasttree
 mv /usr/local/miniconda/bin/fasttree /usr/local/miniconda/bin/FastTree #name required by orthofinder
@@ -65,7 +66,7 @@ mv /usr/local/lib/libmpi_cxx.so.1 /usr/local/miniconda/lib
 mv /usr/local/miniconda/lib/libmpi.so.40 /usr/local/miniconda/lib/libmpi.so.1
 
 echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/miniconda/lib' >>$SINGULARITY_ENVIRONMENT
-echo 'export PATH=$PATH:/usr/local/miniconda/bin:/usr/local/bin/OrthoFinder:/usr/local/bin/OrthoFinder/bin' >>$SINGULARITY_ENVIRONMENT
+echo 'export PATH=$PATH:/usr/local/bin/OrthoFinder:/usr/local/bin/OrthoFinder/bin' >>$SINGULARITY_ENVIRONMENT
 
 %files 
 i-adhore /usr/local/bin
