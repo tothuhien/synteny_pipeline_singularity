@@ -40,6 +40,7 @@ chmod +x Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh -b -p /usr/local/miniconda
 export PATH=$PATH:/usr/local/miniconda/bin
 
+conda update -n base -c defaults conda
 conda install -c conda-forge mamba
 mamba install -c bioconda snakemake
 conda install -c biocore -y mafft 
