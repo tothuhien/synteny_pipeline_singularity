@@ -47,7 +47,9 @@ conda install -c bioconda -y fasttree
 mv /usr/local/miniconda/bin/fasttree /usr/local/miniconda/bin/FastTree #name required by orthofinder
 conda install -c bioconda -y treebest
 conda install -c conda-forge openmpi
-conda install -c bioconda snakemake
+conda install -c conda-forge mamba
+mamba create -c conda-forge -c bioconda -n snakemake snakemake
+#conda install -c bioconda snakemake
 
 
 #Install R/3.5.0
