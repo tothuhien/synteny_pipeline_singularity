@@ -68,7 +68,7 @@ echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/miniconda/lib' >>$SINGU
 
 %files 
 i-adhore /usr/local/bin
-#libpng15.so.15.13.0 /usr/local/lib
+libpng15.so.15.13.0 /usr/local/lib
 libmpi_cxx.so /usr/local/lib
 libmpi_cxx.so.1 /usr/local/lib
 
