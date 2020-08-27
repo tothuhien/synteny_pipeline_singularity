@@ -35,11 +35,11 @@ rm OrthoFinder.tar.gz
 wget https://bioweb.supagro.inra.fr/macse/releases/macse_v2.03.jar
 mv macse_v2.03.jar /usr/local/bin
  
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86.sh
-chmod +x Miniconda3-latest-Linux-x86.sh
-bash Miniconda3-latest-Linux-x86.sh -b -p /usr/local/miniconda
+wget https://repo.anaconda.com/miniconda/Miniconda3-py37_4.8.3-Linux-x86_64.sh
+chmod +x Miniconda3-py37_4.8.3-Linux-x86_64.sh
+bash Miniconda3-py37_4.8.3-Linux-x86_64.sh -b -p /usr/local/miniconda
 export PATH=$PATH:/usr/local/miniconda/bin
-rm Miniconda3-latest-Linux-x86.sh
+rm Miniconda3-py37_4.8.3-Linux-x86_64.sh
 
 
 conda install -c biocore -y mafft 
