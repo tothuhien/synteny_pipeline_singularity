@@ -48,7 +48,7 @@ mv /usr/local/miniconda/bin/fasttree /usr/local/miniconda/bin/FastTree #name req
 conda install -c bioconda -y treebest
 conda install -c conda-forge openmpi
 conda install -c conda-forge mamba
-conda install -c bioconda snakemake
+#conda install -c bioconda snakemake
 #mamba install -c bioconda snakemake
 
 #Install R/3.5.0
