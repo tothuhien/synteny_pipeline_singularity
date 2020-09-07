@@ -43,12 +43,13 @@ rm Miniconda3-latest-Linux-x86_64.sh
 
 conda install -c conda-forge mamba
 mamba create -c conda-forge -c bioconda -n snakemake snakemake
-#mamba install -c bioconda snakemake
+conda activate snakemake
 conda install -c biocore -y mafft 
 conda install -c bioconda -y fasttree
 mv /usr/local/miniconda/bin/fasttree /usr/local/miniconda/bin/FastTree #name required by orthofinder
 conda install -c bioconda -y treebest
 conda install -c conda-forge openmpi
+conda deactivate
 
 #Install R/3.5.0
 wget https://cran.r-project.org/src/base/R-3/R-3.5.0.tar.gz
