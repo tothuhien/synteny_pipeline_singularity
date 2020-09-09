@@ -52,18 +52,18 @@ conda install -c conda-forge openmpi
 conda deactivate
 
 #Install R/3.5.0
-wget https://cran.r-project.org/src/base/R-3/R-3.5.0.tar.gz
-tar -xf R-3.5.0.tar.gz
-cd R-3.5.0
-./configure --with-readline=no --with-x=no
-make
-make install
-cd ../
-rm R-3.5.0.tar.gz
+#wget https://cran.r-project.org/src/base/R-3/R-3.5.0.tar.gz
+#tar -xf R-3.5.0.tar.gz
+#cd R-3.5.0
+#./configure --with-readline=no --with-x=no
+#make
+#make install
+#cd ../
+#rm R-3.5.0.tar.gz
 
 #Install required R packages
-R --slave -e 'install.packages("BiocManager",repos="https://cloud.r-project.org/")'
-R --slave -e 'BiocManager::install(c("dplyr","tidyverse","magrittr","treeio","Biostrings","ape","yaml","seqinr"),dependencies=TRUE)'
+#R --slave -e 'install.packages("BiocManager",repos="https://cloud.r-project.org/")'
+#R --slave -e 'BiocManager::install(c("dplyr","tidyverse","magrittr","treeio","Biostrings","ape","yaml","seqinr"),dependencies=TRUE)'
 
 mv /usr/local/lib/libmpi_cxx.so /usr/local/miniconda/lib
 mv /usr/local/lib/libmpi_cxx.so.1 /usr/local/miniconda/lib
