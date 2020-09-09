@@ -46,7 +46,7 @@ conda install -c conda-forge -y mamba
 mamba create -c conda-forge -c bioconda -n snakemake -y snakemake
 conda install -c biocore -n snakemake -y mafft 
 conda install -c bioconda -n snakemake  -y fasttree
-mv /usr/local/miniconda/bin/fasttree /usr/local/miniconda/bin/FastTree #name required by orthofinder
+mv /usr/local/miniconda/envs/snakemake/bin/fasttree /usr/local/miniconda/envs/snakemake/bin/FastTree #name required by orthofinder
 conda install -c bioconda -n snakemake -y treebest
 conda install -c conda-forge -n snakemake -y openmpi
 
