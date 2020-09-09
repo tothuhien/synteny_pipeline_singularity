@@ -41,15 +41,21 @@ bash Miniconda3-latest-Linux-x86_64.sh -b -p /usr/local/miniconda
 export PATH=$PATH:/usr/local/miniconda/bin
 rm Miniconda3-latest-Linux-x86_64.sh
 
-conda install -c conda-forge mamba
-mamba create -c conda-forge -c bioconda -n snakemake snakemake
-conda activate snakemake
-conda install -c biocore -y mafft 
-conda install -c bioconda -y fasttree
-mv /usr/local/miniconda/bin/fasttree /usr/local/miniconda/bin/FastTree #name required by orthofinder
-conda install -c bioconda -y treebest
-conda install -c conda-forge openmpi
-conda deactivate
+conda init bash
+conda install -c conda-forge -y mamba
+mamba create -c conda-forge -c bioconda -n snakemake -y snakemake
+conda install -c biocore -n snakemake -y mafft 
+conda install -c bioconda -n snakemake  -y fasttree
+mv /usr/local/miniconda/envs/snakemake/bin/fasttree /usr/local/miniconda/envs/snakemake/bin/FastTree #name required by orthofinder
+conda install -c bioconda -n snakemake -y treebest
+conda install -c conda-forge -n snakemake -y openmpi
+
+mv /usr/local/lib/libmpi_cxx.so /usr/local/miniconda/envs/snakemake/lib
+mv /usr/local/lib/libmpi_cxx.so.1 /usr/local/miniconda/envs/snakemake/lib
+mv /usr/local/miniconda/envs/snakemake/lib/libmpi.so.40 /usr/local/miniconda/envs/snakemake/lib/libmpi.so.1
+
+echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/miniconda/lib:/usr/local/miniconda/envs/snakemake/lib' >>$SINGULARITY_ENVIRONMENT
+echo 'export PATH=$PATH:/usr/local/miniconda/bin:/usr/local/miniconda/envs/snakemake/bin:/usr/local/bin/OrthoFinder:/usr/local/bin/OrthoFinder/bin' >>$SINGULARITY_ENVIRONMENT
 
 #Install R/3.5.0
 wget https://cran.r-project.org/src/base/R-3/R-3.5.0.tar.gz
@@ -64,13 +70,6 @@ rm R-3.5.0.tar.gz
 #Install required R packages
 R --slave -e 'install.packages("BiocManager",repos="https://cloud.r-project.org/")'
 R --slave -e 'BiocManager::install(c("dplyr","tidyverse","magrittr","treeio","Biostrings","ape","yaml","seqinr"),dependencies=TRUE)'
-
-mv /usr/local/lib/libmpi_cxx.so /usr/local/miniconda/lib
-mv /usr/local/lib/libmpi_cxx.so.1 /usr/local/miniconda/lib
-mv /usr/local/miniconda/lib/libmpi.so.40 /usr/local/miniconda/lib/libmpi.so.1
-
-echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/miniconda/lib' >>$SINGULARITY_ENVIRONMENT
-echo 'export PATH=$PATH:/usr/local/miniconda/bin:/usr/local/bin/OrthoFinder:/usr/local/bin/OrthoFinder/bin' >>$SINGULARITY_ENVIRONMENT
 
 %files 
 i-adhore /usr/local/bin
