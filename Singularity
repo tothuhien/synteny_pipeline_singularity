@@ -56,6 +56,7 @@ mv /usr/local/miniconda/envs/snakemake/lib/libmpi.so.40 /usr/local/miniconda/env
 
 echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/miniconda/lib:/usr/local/miniconda/envs/snakemake/lib' >>$SINGULARITY_ENVIRONMENT
 echo 'export PATH=$PATH:/usr/local/miniconda/bin:/usr/local/miniconda/envs/snakemake/bin:/usr/local/bin/OrthoFinder:/usr/local/bin/OrthoFinder/bin' >>$SINGULARITY_ENVIRONMENT
+echo 'export R_LIBS_USER=/usr/local/lib/R/library' >>$SINGULARITY_ENVIRONMENT
 
 #Install R/3.5.0
 wget https://cran.r-project.org/src/base/R-3/R-3.5.0.tar.gz
